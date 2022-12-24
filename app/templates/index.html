@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% if title %} <!-- This is how jinja2 uses conditionals, so far I'm just using it to alternate into whether I'm given an username or not-->
-        <title> {{ title }} - Microblog</title>
-        {% else %}
-        <title>Welcome to Microblog!</title>
-        {% endif %}
-    </head>
-    <body>
-        <h1> Hi, {{ user.username }}! </h1>
-        {% for post in posts %} <!--I'm going to be using this to render as many posts as the view sends in a generic way.-->
-        <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-        {% endfor %}
-    </body>
-</html>
+{%extends "base.html"%} <!-- So, as far as I can understand this is meant to be the place where the code in base.html will go-->
+<!-- I left only the content part. The extends statement establishes the inheritance link between the two templates, so that Jinja2 knows that when it is asked to render index.html it needs to embed it inside base.html-->
+{% block content %}
+    <h1>Hi, {{ user.username }}!</h1>
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head> <!--This base template will give us the navigation bar and will be added to the original index-->
         {%if title%}
         <title>{{title}}- Microblog</title>
         {%else%}
@@ -10,6 +10,6 @@
     <body>
         <div>Microblog: <a href="/index">Home</a></div>
         <hr>
-        {%block content %}{% endblock %}
+        {%block content %}{% endblock %} <!-- The block statement defines the place where the derived template can insert themselves-->
     </body>
 </html>
