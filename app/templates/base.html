@@ -1,15 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head> <!--This base template will give us the navigation bar and will be added to the original index-->
-        {%if title%}
-        <title>{{title}}- Microblog</title>
-        {%else%}
+    <head>
+        {% if title %}
+        <title>{{ title }} - Microblog</title>
+        {% else %}
         <title>Welcome to Microblog</title>
-        {%endif%}
+        {% endif %}
     </head>
     <body>
-        <div>Microblog: <a href="/index">Home</a></div>
+        <div>
+            Microblog:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
         <hr>
-        {%block content %}{% endblock %} <!-- The block statement defines the place where the derived template can insert themselves-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
     </body>
 </html>
